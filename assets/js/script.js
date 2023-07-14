@@ -1,30 +1,36 @@
-function getJoke(url){
-  fetch(url)
-    .then(function (response){
-      if(response.status != 200){
-        console.log("Status not 200!!!\t", response);
+function getJoke(url) {
+  return fetch(url)
+    .then((response) => {
+      if (response.status != 200) {
+        throw new Error(`Status not 200!!!\t${response}`);
       }
       return response.json();
     })
-    .then(function (data){
-      console.log("joke: ", data.joke, "\ttype: ", typeof(data.joke));
+    .then((data) => {
+      console.log(`joke: ${data.joke}\ttype: ${typeof data.joke}`);
       let jokeText = $('#joke');
       jokeText.text(data.joke);
-      return data;
+      return data.joke;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
     });
 }
 
 
-  // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
+ // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
   let url = 'https://geek-jokes.sameerkumar.website/api?format=json';
-  let jokeText = $('#joke');
-  let joke;
-    // TODO:  Do all the cool things!
-    console.log("... in the beginning!");
+  
+  // TODO:  Do all the cool things!
+  console.log("... in the beginning!");
 
-    joke = getJoke(url);
-    console.log("joke: ", joke, "\ttype: ", typeof(joke));
-  });
+  getJoke(url)
+    .then((joke) => {
+      console.log(`joke: ${joke}\ttype: ${typeof joke}`);
+      // Perform further actions with the joke
+    });
+});
+
