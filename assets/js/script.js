@@ -34,3 +34,46 @@ $(function () {
     });
 });
 
+    joke = getJoke(url);
+    console.log("joke: ", joke, "\ttype: ", typeof(joke));
+  });
+
+  const inputTranslation = document.getElementById('input-translation')
+  const form = document.getElementById('form')
+
+  let sentence = ''
+  let apiKey = '9fH_W0mxmUPzSh6bXbWBSweF';
+
+  function fetchTranslation(s) {
+    const requestURL = `https://api.funtranslations.com/translate/yoda.json?text=${s}&apikey=${apiKey}`;
+
+    fetch(requestURL)
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(data) {
+        console.log(data)
+      })
+    }
+
+  function getTranslation(event) {
+    event.preventDefault()
+    
+    let phrase = inputTranslation.value
+    
+    sentence = encodeURIComponent(phrase)
+
+    inputTranslation.value = ''
+
+    console.log(sentence)
+
+    if (sentence) {
+        fetchTranslation(sentence)
+    } else {
+      alert('please enter a sentence for master yoda')
+      return
+    }
+  }
+
+  form.addEventListener('submit', getTranslation)
+
