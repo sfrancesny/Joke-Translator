@@ -36,17 +36,17 @@ function getJoke() {
 
 // API TWO:  The translation
 function getTranslation(event) {
-  event.preventDefault()
+  event.preventDefault();
   const phrase = $('#joke').text();
 
   // Capture joke text
-  const sentence = encodeURIComponent(phrase)
+  const sentence = encodeURIComponent(phrase);
 
   if (sentence) {
-    fetchTranslation(sentence)
+    fetchTranslation(sentence);
   } else {
-    alert('please enter a sentence for master yoda')
-    return
+    alert('please enter a sentence for master yoda');
+    return;
   }
 }
 
@@ -55,10 +55,20 @@ function fetchTranslation(s) {
   const requestURL = `https://api.funtranslations.com/translate/yoda.json?text=${s}&apikey=${translateAPIkey}`;
   const translatedText = $('#translated');
   fetch(requestURL)
-    .then(function(res) {
-      return res.json();
+    .then(function(response) {
+      if(response.status != 200){
+        console.log("TranslateAPI response not 200", response);
+      }
+      return response.json();
     })
     .then(function(data) {
-      translatedText.text(data.contents.translated);
+      if(!data[0]){
+        const str = "This is a hard-coded string to allow the app to complete";
+        console.log("Temporary catch due to too many translate API hits");
+        console.log(str);
+        translatedText.text(str);
+      } else {
+        translatedText.text(data.contents.translated);
+      }
     })
 }
