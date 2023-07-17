@@ -52,7 +52,7 @@ function getTranslation(event) {
 
 // getTranslation Helper
 function fetchTranslation(s) {
-  const requestURL = `https://api.funtranslations.com/translate/yoda.json?text=${s}&apikey=${translateAPIkey}`;
+  const requestURL = `https://api.funtranslations.com/translate/yoda.json?text=${s}`;//&apikey=${translateAPIkey}`;
   const translatedText = $('#translated');
   fetch(requestURL)
     .then(function(response) {
