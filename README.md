@@ -10,7 +10,7 @@
 ![Screenshot of Joke Translator app.](./assets/img/404.jpg)
 
 ## Links
-### [Link to repo](https://github.com/sfrancesny/Weather-Fun)
+### [Link to repo](https://github.com/sfrancesny/Joke-Translator)
 ### [Link to finished product](www.google.com)
 
 ### Joke Translator app use
