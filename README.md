@@ -11,7 +11,7 @@
 
 ## Links
 ### [Link to repo](https://github.com/sfrancesny/Joke-Translator)
-### [Link to finished product](www.google.com)
+### [Link to finished product](https://sfrancesny.github.io/Joke-Translator/)
 
 ### Joke Translator app use
 - Click on click-me-for-laugh button to display joke above button.
