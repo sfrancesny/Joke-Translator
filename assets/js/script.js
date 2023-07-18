@@ -6,6 +6,7 @@ let jokeTranslateArray;
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+  M.AutoInit();
   const jokeBtn = $('#download-button');
   const translateBtn = $('#translate-button');
   const clearBtn = $('#clear-storage');
@@ -81,8 +82,14 @@ function fetchTranslation(jokeOG) {
 }
 
 function storeRay (dPair){
+  /* 
+  * TODO TODO TODO TODO STOPPING HERE ON ARRAY.INCLUDES() ISSUES
+  * 
+  */
+  if(jokeTranslateArray.includes(dPair)){ return;}
   jokeTranslateArray.push(dPair);
   localStorage.setItem(jtArrayKEY, JSON.stringify(jokeTranslateArray));
+  buildStoredJokeCard();
 }
 
 function init(){
@@ -92,7 +99,7 @@ function init(){
   } else {
     jokeTranslateArray = new Array();
   }
-  // Build html buttons or something here (or do this somewhere else)
+  buildStoredJokeCard();
 }
 
 function clearLocalstorage() {
@@ -106,9 +113,42 @@ function printRay() { // Remove on final submission most likely
     console.log("Array empty");
     return;
   }
-  // for(let index = 0; index < jokeTranslateArray.length; index++){
-  //   console.log("JOKE: ", jokeTranslateArray[index].jokeOG, "\tJKTR: ", jokeTranslateArray[index].jokeTR);
-  // }
 }
 
-M.AutoInit();
+function buildStoredJokeCard(){
+  $('#stored-jokes').empty();
+  if(!jokeTranslateArray){ return;}
+  let row = $('<div>');
+  row.addClass('row');
+
+  for(let index = 0; index < jokeTranslateArray.length; index++){
+    let col = $('<div>');
+    col.addClass('col s12 m6 card');
+  
+    let card = $('<div>');
+    card.addClass('card blue-grey darken-3');
+  
+    let cardContent = $('<div>');
+    cardContent.addClass('card-content white-text');
+  
+    let span = $('<span>');
+    span.addClass('card-title');
+    span.text('Joke');
+  
+    let p = $('<p>');
+    p.text(jokeTranslateArray[index].jokeOG);
+  
+    cardContent.append(span, p);
+    card.append(cardContent);
+    col.append(card);
+    row.append(col);
+  }
+
+
+  row.on('click', 'div', function(){
+    console.log("CLICKITY CLICK", $(this).text());
+    $('#joke').text($(this).text());
+  });
+
+  $('#stored-jokes').append(row);
+}
