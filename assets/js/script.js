@@ -110,3 +110,5 @@ function printRay() { // Remove on final submission most likely
   //   console.log("JOKE: ", jokeTranslateArray[index].jokeOG, "\tJKTR: ", jokeTranslateArray[index].jokeTR);
   // }
 }
+
+M.AutoInit();
