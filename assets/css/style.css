@@ -42,7 +42,8 @@ body {
 }
 /* /END RESET */
 body {
-	background: #fcf9f9 url("img/bodyBg_repeatX.gif") top repeat-x;
+	/* Commented the line below out because the url() bit was throwing an error */
+	/* background: #fcf9f9 url("img/bodyBg_repeatX.gif") top repeat-x; */
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 }
