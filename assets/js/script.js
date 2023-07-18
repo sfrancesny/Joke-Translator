@@ -48,7 +48,7 @@ function getTranslation(event) {
   if (phrase) {
     fetchTranslation(phrase);
   } else {
-    alert('please enter a sentence for master yoda');
+    should('please enter a sentence for master yoda');
     return;
   }
 }
