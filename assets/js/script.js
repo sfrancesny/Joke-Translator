@@ -6,7 +6,7 @@ let jokeTranslateArray;
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {
+$(function (){
   M.AutoInit();
   const jokeBtn = $('#download-button');
   const translateBtn = $('#translate-button');
@@ -19,7 +19,7 @@ $(function () {
 });
 
 // API ONE:  The Joke
-function getJoke() {
+function getJoke(){
   return fetch(jokeURL)
     .then((response) => {
       if (response.status != 200) {
@@ -39,7 +39,7 @@ function getJoke() {
 }
 
 // API TWO:  The translation
-function getTranslation(event) {
+function getTranslation(event){
   event.preventDefault();
   // Capture current joke text
   const phrase = $('#joke').text();
@@ -54,7 +54,7 @@ function getTranslation(event) {
 }
 
 // (helper).... getTranslation
-function fetchTranslation(jokeOG) {
+function fetchTranslation(jokeOG){
   // Abort translation if placeholder detected
   if(jokeOG === jokePlaceHolder){ return;}
   // URL encode joke
@@ -66,12 +66,13 @@ function fetchTranslation(jokeOG) {
     .then(function(response) {
       if(response.status != 200){
         console.log("TranslateAPI response not 200", response);
+        return -1;
       }
       return response.json();
     })
     .then(function(data) {
       let jokeTR;
-      if(!data.contents.translated){
+      if(data == -1){
         jokeTR = "This is a hard-coded string to allow the app to complete";
         console.log("Temporary catch due to too many translate API hits");
       } else { jokeTR = data.contents.translated;}
@@ -81,7 +82,7 @@ function fetchTranslation(jokeOG) {
     });
 }
 
-function storeRay (dPair){
+function storeRay(dPair){
   // Logic to prevent duplicates
   let found = false;
   jokeTranslateArray.forEach(element => {
@@ -113,7 +114,7 @@ function init(){
   buildStoredJokeCards();
 }
 
-function clearLocalstorage() {
+function clearLocalstorage(){
   localStorage.clear();
   init();
 }
