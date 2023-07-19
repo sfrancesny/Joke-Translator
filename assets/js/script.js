@@ -48,7 +48,7 @@ function getTranslation(event) {
   if (phrase) {
     fetchTranslation(phrase);
   } else {
-    should('please enter a sentence for master yoda');
+    alert('please enter a sentence for master yoda');
     return;
   }
 }
@@ -61,35 +61,24 @@ function fetchTranslation(jokeOG) {
   const jokeURLencoded = encodeURIComponent(jokeOG);
   // Build URL for api fetch request
   const requestURL = `https://api.funtranslations.com/translate/yoda.json?text=${jokeURLencoded}&apikey=${translateAPIkey}`;//
-  // Jquery element for translated joke output
-  // const translatedText = $('#translated');
 
-  /******************************************************************************
-      ALL THIS IS TEMP:  avoids continuing to hit limited api during development
-  */
-  jokeTR = "This is a hard-coded string to allow the app to complete";
-  storeRay({jokeOG, jokeTR});
-  $('#translated').text(jokeTR);
-  /******************************************************************************/
-
-  /************ Uncomment-out the below section to use translate api ************/
-  // fetch(requestURL)
-  //   .then(function(response) {
-  //     if(response.status != 200){
-  //       console.log("TranslateAPI response not 200", response);
-  //     }
-  //     return response.json();
-  //   })
-  //   .then(function(data) {
-  //     let jokeTR;
-  //     if(!data[0]){
-  //       jokeTR = "This is a hard-coded string to allow the app to complete";
-  //       console.log("Temporary catch due to too many translate API hits");
-  //     } else { jokeTR = data.contents.translated;}
-  //     // Localstore save of joke/translation pair
-  //     storeRay({jokeOG, jokeTR});
-  //     $('#translated').text(jokeTR);
-  //   });
+  fetch(requestURL)
+    .then(function(response) {
+      if(response.status != 200){
+        console.log("TranslateAPI response not 200", response);
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      let jokeTR;
+      if(!data.contents.translated){
+        jokeTR = "This is a hard-coded string to allow the app to complete";
+        console.log("Temporary catch due to too many translate API hits");
+      } else { jokeTR = data.contents.translated;}
+      // Localstore save of joke/translation pair
+      storeRay({jokeOG, jokeTR});
+      $('#translated').text(jokeTR);
+    });
 }
 
 function storeRay (dPair){
