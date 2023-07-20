@@ -53,6 +53,27 @@ function getTranslation(event){
   }
 }
 
+// Get the modal
+var modal = document.getElementById("modalContent");
+
+// Get the button that opens the modal
+var btn = document.querySelector("#myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 // (helper).... getTranslation
 function fetchTranslation(jokeOG){
   // Abort translation if placeholder detected
@@ -78,7 +99,8 @@ function fetchTranslation(jokeOG){
       } else { jokeTR = data.contents.translated;}
       // Localstore save of joke/translation pair
       storeRay({jokeOG, jokeTR});
-      $('#translated').text(jokeTR);
+      //$('#translated').text(jokeTR);
+      $('#modal1 #modal-content').text(jokeTR);
     });
 }
 
