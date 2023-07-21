@@ -54,17 +54,14 @@ function getTranslation(event){
 }
 
 // Get the modal
-var modal = document.getElementById("modalContent");
+var modal = document.querySelector("modal-content");
 
 // Get the button that opens the modal
 var btn = document.querySelector("#myBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
-  modal.style.display = "block";
+  $('#modal1').modal('open');
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -99,8 +96,8 @@ function fetchTranslation(jokeOG){
       } else { jokeTR = data.contents.translated;}
       // Localstore save of joke/translation pair
       storeRay({jokeOG, jokeTR});
-      //$('#translated').text(jokeTR);
-      $('#modal1 #modal-content').text(jokeTR);
+      $("#translated").text(jokeTR);
+      $('#modal1').modal('open');
     });
 }
 

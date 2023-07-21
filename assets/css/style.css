@@ -149,9 +149,9 @@ html[xmlns] .clearfix {
 }
 
 /*Modal*/
-.modalBody {padding: 2px 16px;}
+.modal {padding: 8px 8px; width: auto; height: auto;}
   
-#modalContent {
+.modal-content {
 	position: relative;
 	background-color: #fefefe;
 	margin: auto;
