@@ -48,7 +48,9 @@ function getTranslation(event){
   if (phrase) {
     fetchTranslation(phrase);
   } else {
-    alert('please enter a sentence for master yoda');
+    console.log("Failed successfully");
+    $('#translated').text("FAILURE:  Joke phrase is empty");
+    $('#modal1').modal('open');
     return;
   }
 }
@@ -62,8 +64,8 @@ var btn = document.querySelector("#myBtn");
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
   $('#modal1').modal('open');
+  $('#joke2').text("MOOOOO");
 }
-
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -79,7 +81,7 @@ function fetchTranslation(jokeOG){
   // URL encode joke
   const jokeURLencoded = encodeURIComponent(jokeOG);
   // Build URL for api fetch request
-  const requestURL = `https://api.funtranslations.com/translate/yoda.json?text=${jokeURLencoded}&apikey=${translateAPIkey}`;//
+  const requestURL = `https://api.funtranslations.com/translate/yoda.json?text=${jokeURLencoded}&apikey=${translateAPIkey}`;
 
   fetch(requestURL)
     .then(function(response) {
@@ -97,6 +99,7 @@ function fetchTranslation(jokeOG){
       } else { jokeTR = data.contents.translated;}
       // Localstore save of joke/translation pair
       storeRay({jokeOG, jokeTR});
+      $('#joke2').text("Original joke: " + jokeOG);
       $("#translated").text(jokeTR);
       $('#modal1').modal('open');
     });
@@ -183,7 +186,9 @@ function buildStoredJokeCards(){
     }
     // Populate joke/translated fields with results
     $('#joke').text(retrievedJoke);
-    $('#translated').text(retrievedJkTrPair.jokeTR + "test part to see that html updates");
+    $('#joke2').text("Original joke: " + retrievedJoke);
+    $('#translated').text(retrievedJkTrPair.jokeTR);// + "test part to see that html updates");
+    $('#modal1').modal('open');
   });
 
   // Append the built joke cards to the section/container for storing joke cards
