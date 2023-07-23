@@ -149,8 +149,24 @@ html[xmlns] .clearfix {
 }
 
 /*Modal*/
-.modal {padding: 8px 8px; width: auto; height: auto;}
+.modal {
+	padding: 8px 8px;
+	width: auto;
+	height: auto;
+	overflow: auto;
+}
   
+#translated {
+	/* overflow: auto; */
+	/* white-space: normal; */
+	height: 100%;
+	word-wrap: break-word;
+}
+
+#joke2 {
+	text-align: center;
+}
+
 .modal-content {
 	position: relative;
 	background-color: #fefefe;
@@ -160,7 +176,8 @@ html[xmlns] .clearfix {
 	width: 80%;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 	animation-name: animatetop;
-	animation-duration: 0.4s
+	animation-duration: 0.4s;
+	bottom: 0;
 }
   
 @keyframes animatetop {
