@@ -20,7 +20,7 @@
 
 ## External Server-side APIs
 ### [JOKES](https://github.com/sameerkumar18/geek-joke-api)
-- Simple endpoint that returns a random geeky joke.  This API was very easy to use, did not require regestering or obtaining an API key, and did not fail at any time.
+- Simple endpoint that returns a random geeky joke.  This API was very easy to use, did not require registering or obtaining an API key, and did not fail at any time.
 ### [TRANSLATIONS](https://funtranslations.com/api/)
 - This endpoint offered a lot of different translations.  There is general/limited-use API that did not require a key, but the limits were quickly reached.  One of our developers paid for an API key that afforded an increased limit threshold, but even this was quickly reached.
 
